@@ -3,9 +3,7 @@ const fs = require("fs");
 class DataOrder {
   async read() {
     try {
-      const file = fs.readFileSync("/tmp/data_order.json", {
-        encoding: "utf-8",
-      });
+      const file = fs.readFileSync("/tmp/data_order.json", "utf-8");
       return eval(file);
     } catch (error) {
       console.log(error);
