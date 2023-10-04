@@ -3,7 +3,7 @@ const fs = require("fs");
 class DataOrder {
   async read() {
     try {
-      const file = await fs.readFileSync("/tmp/data_order.json", {
+      const file = fs.readFileSync("/tmp/data_order.json", {
         encoding: "utf-8",
       });
       return eval(file);
@@ -14,7 +14,7 @@ class DataOrder {
 
   async save(body) {
     try {
-      await fs.createWriteStream("/tmp/data_order.json", JSON.stringify(body, null, 2));
+      fs.createWriteStream("/tmp/data_order.json", JSON.stringify(body, null, 2));
       return "Success"
     } catch (error) {
       console.log(error);
