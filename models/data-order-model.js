@@ -14,7 +14,7 @@ class DataOrder {
 
   async save(body) {
     try {
-      await fs.writeFile("./database/data_order.json", JSON.stringify(body, null, 2));
+      await fs.writeFile("../database/data_order.json", JSON.stringify(body, null, 2));
       return "Success"
     } catch (error) {
       console.log(error);
