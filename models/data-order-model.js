@@ -1,9 +1,11 @@
-const fs = require("fs");
+const fs = require("node:fs/promises");
 
 class DataOrder {
   async read() {
     try {
-      const file = fs.readFileSync("/tmp/data_order.json", "utf-8");
+      const file = await fs.readFile("./database/data_order.json", {
+        encoding: "utf-8"
+      });
       return eval(file);
     } catch (error) {
       console.log(error);
@@ -12,7 +14,7 @@ class DataOrder {
 
   async save(body) {
     try {
-      fs.createWriteStream("/tmp/data_order.json", JSON.stringify(body, null, 2));
+      await fs.writeFile("./database/data_order.json", JSON.stringify(body, null, 2));
       return "Success"
     } catch (error) {
       console.log(error);
