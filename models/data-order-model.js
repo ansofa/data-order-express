@@ -1,4 +1,4 @@
-const fs = require("node:fs/promises");
+const fs = require("fs");
 
 class DataOrder {
   async read() {
