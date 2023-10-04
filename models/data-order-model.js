@@ -1,10 +1,12 @@
+const path = require("path");
 const fs = require("node:fs/promises");
 
 class DataOrder {
   async read() {
     try {
-      const file = await fs.readFile("/database/data_order.json", {
-        encoding: "utf-8"
+      const databaseDirectory = path.join(process.cwd(), "database");
+      const file = await fs.readFile(databaseDirectory + "/data_order.json", {
+        encoding: "utf-8",
       });
       return eval(file);
     } catch (error) {
@@ -14,8 +16,9 @@ class DataOrder {
 
   async save(body) {
     try {
-      await fs.writeFile("/database/data_order.json", JSON.stringify(body, null, 2));
-      return "Success"
+      const databaseDirectory = path.join(process.cwd(), "database");
+      await fs.writeFile(databaseDirectory + "/data_order.json", JSON.stringify(body, null, 2));
+      return "Success";
     } catch (error) {
       console.log(error);
     }
